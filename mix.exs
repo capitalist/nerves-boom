@@ -15,6 +15,9 @@ defmodule Boom.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases(),
+
+     kernel_modules: kernel_modules(@target),
+
      deps: deps() ++ system(@target)]
   end
 
@@ -23,11 +26,12 @@ defmodule Boom.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Boom, []},
-     applications: [:logger, :nerves_leds]]
+     extra_applications: [:logger, :nerves_leds]]
   end
 
   def deps do
     [{:nerves, "~> 0.4.0"},
+     {:nerves_interim_wifi, "~> 0.1"},
      {:nerves_leds, "~> 0.8.0"}
     ]
   end
@@ -41,4 +45,6 @@ defmodule Boom.Mixfile do
      "deps.loadpaths":  ["deps.loadpaths", "nerves.loadpaths"]]
   end
 
+  def kernel_modules("rpi3"), do: ["brcmfmac"]
+  def kernel_modules(_), do: []
 end

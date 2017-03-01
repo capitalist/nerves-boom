@@ -12,3 +12,4 @@ use Mix.Config
 # import_config "#{Mix.Project.config[:target]}.exs"
 
 config :nerves_leds, names: [green: "led0"]
+config :boom, :wlan0, ssid: "boo",  key_mgmt: :"WPA-PSK",  psk: "thunderstruck"
