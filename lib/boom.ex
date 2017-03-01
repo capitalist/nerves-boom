@@ -18,9 +18,9 @@ defmodule Boom do
   end
 
   def blinker() do
-    Leds.set green: true
+    Nerves.Leds.set green: true
     :timer.sleep 200
-    Leds.set green: false
+    Nerves.Leds.set green: false
     :timer.sleep 200
     blinker()
   end
